@@ -1,0 +1,58 @@
+﻿<div ng-switch="cellEditorCtrl.column.type" >
+
+    <!--Text required-->
+    <input ng-switch-default type="text" required ng-if="cellEditorCtrl.column.required != 'false'"
+           ng-model="cellEditorCtrl.item[cellEditorCtrl.column.binding]"
+           ng-keyup="cellEditorCtrl.fireKeyUpEvent($event, cellEditorCtrl.item)" class="form-control" />
+
+    <!--Text not required-->
+    <input ng-switch-default type="text" ng-if="cellEditorCtrl.column.required != 'true'"
+           ng-model="cellEditorCtrl.item[cellEditorCtrl.column.binding]"
+           ng-keyup="cellEditorCtrl.fireKeyUpEvent($event, cellEditorCtrl.item)" class="form-control" />
+
+    <!--Date required-->
+    <span class="input-group" ng-switch-when="date" ng-if="cellEditorCtrl.column.required == 'false'">
+
+        <input type="text"
+               class="form-control"
+               datepicker-popup="fullDate"
+               min-date="cellEditorCtrl.today"
+               ng-model="cellEditorCtrl.item[cellEditorCtrl.column.binding]"
+               is-open="cellEditorCtrl.datePickerOpen"
+               ng-keyup="cellEditorCtrl.fireKeyUpEvent($event, cellEditorCtrl.item)" />
+
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="cellEditorCtrl.openDatePicker($event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+            </button>
+        </span>
+
+    </span>
+
+    <!--Date not required-->
+    <span class="input-group" ng-switch-when="date" ng-if="cellEditorCtrl.column.required == 'true'">
+
+        <input type="text"
+               class="form-control"
+               datepicker-popup="fullDate"
+               min-date="cellEditorCtrl.today"
+               ng-model="cellEditorCtrl.item[cellEditorCtrl.column.binding]"
+               is-open="cellEditorCtrl.datePickerOpen"
+               ng-keyup="cellEditorCtrl.fireKeyUpEvent($event, cellEditorCtrl.item)" />
+
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="cellEditorCtrl.openDatePicker($event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+            </button>
+        </span>
+
+    </span>
+  
+    <!--Button-->
+    <span  ng-switch-when="button">
+        <!--Empty-->
+    </span>
+
+        
+
+</div>

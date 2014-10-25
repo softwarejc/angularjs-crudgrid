@@ -1,0 +1,129 @@
+﻿<div>
+    <!--Filter-->
+    <div class="input-group col-md-12 filter">
+        <span class="input-group-addon">
+            <i class="glyphicon glyphicon-search"></i>
+        </span>
+
+        <input class="form-control filter-input" type="text" ng-keydown="itemsCtrl.filterChanged()" ng-model="itemsCtrl.filterText" placeholder="filter...">
+
+        <span class="input-group-addon btn btn-default" ng-click="itemsCtrl.clearFilter()" ng-hide="itemsCtrl.filter.length == 0">
+            <i class="glyphicon glyphicon-remove"></i>
+        </span>
+    </div>
+    
+    <!--Grid-->
+    <table class="table table-condensed table-hover table-striped table-bordered crud-grid" ng-hide="itemsCtrl.loading">
+        <!-- HEADER-->
+        <thead>
+            <tr>
+                <!--Buttons column-->
+                <th class="header column-width-auto text-center">
+                    <!--Add + Cancel-->
+                    <i class="btn btn-sm btn-grid glyphicon glyphicon-plus" ng-click="itemsCtrl.toggleAddMode()" title="Add" ng-hide="itemsCtrl.addMode"></i>
+                    <i class="btn btn-sm btn-grid glyphicon glyphicon-minus" ng-click="itemsCtrl.toggleAddMode()" title="Cancel" ng-show="itemsCtrl.addMode"></i>
+                </th>
+
+                <!-- Content headers-->
+                <th ng-repeat="column in itemsCtrl.columnsDefinition"
+                    ng-hide="column.hidden"
+                    style="vertical-align:middle; cursor: pointer"
+                    class="header"
+                    ng-class="column.class">
+                    <div ng-click="itemsCtrl.setOrderByColumn(column.binding)">
+                        {{column.header}}
+                        <i class="glyphicon"
+                           ng-class="{
+                       'glyphicon glyphicon-arrow-up'   : !itemsCtrl.orderByReverse,
+                       'glyphicon glyphicon-arrow-down' : itemsCtrl.orderByReverse
+                       }"
+                           ng-show="itemsCtrl.orderByColumn == column.binding"></i>
+                    </div>
+                </th>
+            </tr>
+        </thead>
+
+        <!--BODY-->
+        <tbody>
+            <!--Row with the new item-->
+            <tr ng-if="itemsCtrl.addMode">
+
+                <!--New item: Buttons column-->
+                <td class="add-item">
+                    <!--Create + Cancel-->
+                    <i class="btn btn-sm btn-grid glyphicon glyphicon-floppy-disk" ng-click="itemsCtrl.createItem(itemsCtrl.newItem)" title="Create" ng-disabled="itemsCtrl.newItem.hasErrors"></i>
+                    <i class="btn btn-sm btn-grid glyphicon glyphicon-remove" ng-click="itemsCtrl.toggleAddMode()" title="Cancel"></i>
+                </td>
+
+                <!-- New item: Content columns-->
+                <td ng-repeat="column in itemsCtrl.columnsDefinition" ng-hide="column.hidden" class="add-item">
+
+                    <!--Show cell editor control for each column-->
+                    <div cell-editor
+                         item="itemsCtrl.newItem"
+                         column="column"
+                         key-up-event="itemsCtrl.createModeKeyUp">
+                    </div>
+                </td>
+            </tr>
+
+            <!--Content-->
+            <tr ng-repeat="knownItem in itemsCtrl.allItems | filter:itemsCtrl.filter">
+
+                <!--Edit/Delete buttons-->
+                <td>
+                    <!--Edit + Delete  -->
+                    <div ng-show="knownItem.editMode == null || knownItem.editMode == false">
+                        <i class="btn btn-sm btn-grid glyphicon glyphicon-edit" ng-click="itemsCtrl.toggleEditMode(knownItem)" title="Edit"></i>
+                        <i class="btn btn-sm btn-grid glyphicon glyphicon-trash" ng-click="itemsCtrl.deleteItemWithConfirmation(knownItem)" title="Delete"></i>
+                    </div>
+
+                    <!--Save + Cancel -->
+                    <div ng-show="knownItem.editMode">
+                        <i class="btn btn-sm btn-grid glyphicon glyphicon-floppy-disk" ng-click="itemsCtrl.updateItem(knownItem)" title="Save" ng-disabled="knownItem.hasErrors"></i>
+                        <i class="btn btn-sm btn-grid glyphicon glyphicon-remove" ng-click="itemsCtrl.toggleEditMode(knownItem)" title="Cancel"></i>
+                    </div>
+
+                </td>
+
+                <!-- Content columns-->
+                <td ng-repeat="column in itemsCtrl.columnsDefinition" ng-hide="column.hidden">
+
+                    <!--Read mode-->
+                    <span ng-show="knownItem.editMode == null || knownItem.editMode == false" ng-dblclick="itemsCtrl.toggleEditMode(knownItem)">
+                        <!-- Each item as an array property / value, header is the value that this column display-->
+                        <span ng-switch="column.type">
+                            <!-- Text -->
+                            <span ng-switch-default>{{knownItem[column.binding]}}</span>
+                            <!-- Date -->
+                            <span ng-switch-when="date">{{knownItem[column.binding]| date:'fullDate'}}</span>
+                            <!-- Button -->
+                            <span ng-switch-when="button">
+                                <div class="btn-group ">
+                                    <i ng-class="column.icon" ng-click="itemsCtrl.notifyColumnClick(column.buttonid, knownItem)"></i>
+                                </div>
+                            </span>
+                        </span>
+                    </span>
+
+                    <!--Show cell editor control for each column-->
+                    <div ng-show="knownItem.editMode"
+                         cell-editor
+                         item="knownItem"
+                         column="column"
+                         key-up-event="itemsCtrl.updateModeKeyUp">
+                        <!--updateModeKeyUp has no parenthesis to pass parameters-->
+                    </div>
+
+                </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+
+
+    <!--Loading indicator-->
+    <img src="/images/loading.gif" ng-show="itemsCtrl.loading" class="center-block" title="Loading..." style="margin-top: 20px" />
+
+</div>
