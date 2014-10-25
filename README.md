@@ -1,9 +1,11 @@
 A grid with create, read, update and delete inline functionality using AngularJS and WebAPI.
 The datasource of the grid is the URL of a WebAPI to access the items to display.
 
-<p>Live demo <a href="http://crud-grid-angular-iii.azurewebsites.net/">AngularJS CRUD Grid III demo</a>.</p>
+<b>Live demo:</b>
+<p><a href="http://crud-grid-angular-iii.azurewebsites.net/">AngularJS CRUD Grid III demo</a></p>
 
-Features:
+
+<b>Features:</b>
 
 <ul>
 <li>CRUD operations: Create, Read, Update and Delete for the contained items.</li>
