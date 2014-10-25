@@ -1,0 +1,37 @@
+﻿
+.header {
+    white-space: nowrap;
+}
+
+.column-width-auto {
+    width: 1px;
+}
+
+.btn-grid {
+    padding: 6px;
+}
+
+.filter {
+    padding-bottom: 10px !important;
+}
+
+.filter-input::-ms-clear {
+  width : 0;
+  height: 0;
+}
+
+.crud-grid {
+}
+
+    .crud-grid th {
+        font-style: oblique !important;
+    }
+
+    .crud-grid td {
+        white-space: nowrap !important;
+        vertical-align: middle !important;
+    }
+
+    .crud-grid .add-item {
+        background-color: rgb(251, 244, 222) !important;
+    }

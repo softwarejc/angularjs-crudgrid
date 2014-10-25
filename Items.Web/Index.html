@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html ng-app="stockModule" lang="en"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Crud grid demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--css-->
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="app/directives/crud.grid/crud.grid.styles.css" rel="stylesheet" />
+    <link href="content/site.css" rel="stylesheet" />
+
+    <!--jquery-->
+    <script src="Scripts/jquery-2.1.1.js"></script>
+
+    <!--bootstrap-->
+    <script src="Scripts/bootstrap.min.js"></script>
+
+    <!--toastr-->
+    <link href="Content/toastr.css" rel="stylesheet" />
+
+    <!--toaster-->
+    <script src="Scripts/toastr.js"></script>
+
+    <!--angular-->
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-resource.js"></script>
+    <script src="Scripts/AngularUI/ui-router.js"></script>
+    <script src="Scripts/ui-bootstrap-tpls-0.11.0.min.js"></script>
+
+    <!--======================
+           my scripts
+        ====================== -->
+    <!--module and common-->
+    <script src="app/stock.module.js"></script>
+    <script src="app/notifications.factory.js"></script>
+    <script src="app/modal-window.factory.js"></script>
+    <script src="app/reactive-factory.js"></script>
+
+
+    <!--items-->
+    <script src="app/items/items.controller.js"></script>
+    <script src="app/items/items.factory.js"></script>
+
+    <!--directives-->
+    <script src="app/directives/crud.grid/crud.grid.directive.js"></script>
+    <script src="app/directives/crud.grid/crud.grid.controller.js"></script>
+    <script src="app/directives/crud.grid/crud.grid.factory.js"></script>
+
+    <script src="app/directives/crud.grid/cell.editor/cell.editor.directive.js"></script>
+    <script src="app/directives/crud.grid/cell.editor/cell.editor.controller.js"></script>
+
+</head>
+
+<!--Angular APP container (ng-app)-->
+
+
+<body class="container" ng-cloak style="padding-top: 40px;">
+
+    <!--Header-->
+    <nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://softwarejuancarlos.com" class="navbar-brand">
+                <span class="glyphicon glyphicon-user white"></span>
+                &nbsp;softwarejuancarlos.com
+            </a>
+        </div>
+    </nav>
+
+    <div>
+        <div ui-view="main">
+        </div>
+    </div>
+
+</body>
+
+
+<!--Angular scripts-->
+</html>

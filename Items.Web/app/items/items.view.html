@@ -1,0 +1,50 @@
+﻿<div>
+    <h1>
+        <i class="btn glyphicon glyphicon-folder-open disabled" style="vertical-align: middle"></i>
+        <a ui-sref="items">
+            Demo
+        </a>
+        <small>
+            ({{itemsCtrl.gridController.allItems.length}})
+            - Angular JS + WebAPI, Crud Grid Demo
+        </small>
+    </h1>
+
+    <div crud-grid
+         column-button-click='itemsCtrl.gridOnButtonClick'
+         initialized='itemsCtrl.gridOnInitialized'
+         server-url='/api/Items'
+         columns-definition='[
+         {
+            "binding"       :"id",
+            "type"          :"text",
+            "required"      :"true",
+            "hidden"        :"true"
+         },
+         {
+            "binding"       :"name",
+            "header"        :"Name",
+            "type"          :"text",
+            "required"      :"true"
+         },
+         {
+            "binding"       :"description",
+            "header"        :"Level",
+            "type"          :"text",
+            "required"      :"false"
+         },
+         {
+             "type"         :"button",
+             "icon"         :"btn glyphicon glyphicon-plus",
+             "buttonid"     :"plus",
+             "class"        :"column-width-auto"
+         },
+         {
+             "type"         :"button",
+             "icon"         :"btn glyphicon glyphicon-minus",
+             "buttonid"     :"minus",
+             "class"        :"column-width-auto"
+         }
+         ]'>
+    </div>
+</div>
