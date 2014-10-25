@@ -33,6 +33,7 @@ namespace Items.Business.Services
         private static readonly List<Item> mockDatabase = new List<Item>
         {
             new Item{Id = GetIndex(),    Name = "C++",           Description = "2",},
+            new Item{Id = GetIndex(),    Name = "Java",          Description = "3",},
             new Item{Id = GetIndex(),    Name = "C#",            Description = "5",},
             new Item{Id = GetIndex(),    Name = "WPF",           Description = "5",},
             new Item{Id = GetIndex(),    Name = "AngularJS",     Description = "3",},
