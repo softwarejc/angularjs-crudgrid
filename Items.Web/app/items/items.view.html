@@ -13,7 +13,7 @@
     <div crud-grid
          column-button-click='itemsCtrl.gridOnButtonClick'
          initialized='itemsCtrl.gridOnInitialized'
-         server-url='/api/Items'
+         server-url='{{itemsCtrl.serverUrl}}'
          columns-definition='[
          {
             "binding"       :"id",

@@ -103,7 +103,7 @@ function crudgridController($scope, $element, $attrs, ajaxServiceFactory, notifi
 
     function _initialize() {
         // create a service to do the communication with the server
-        _itemsService = ajaxServiceFactory.getService($attrs.serverUrl);
+        _itemsService = ajaxServiceFactory.getService($scope.serverUrl);
 
         // configured columns
         self.columnsDefinition = angular.fromJson($attrs.columnsDefinition);

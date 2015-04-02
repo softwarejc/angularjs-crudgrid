@@ -11,7 +11,8 @@
         // scope = {..}, isolated scope
         scope: {
             columnButtonClick: "&",    // method binding
-            initialized: "&" // method binding
+            initialized: "&", // method binding
+            serverUrl: "@serverUrl"  // one way binding
         },
         // view
         templateUrl: '/app/directives/crud.grid/crud.grid.view.html',
