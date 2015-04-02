@@ -16,6 +16,9 @@
 
         // Method executed when the grid is initialized
         self.gridOnInitialized = _gridOnInitialized;
+        
+        // API URL
+        self.serverUrl = "/api/Items";
 
         //// ---------------- CODE TO RUN -----------
 
